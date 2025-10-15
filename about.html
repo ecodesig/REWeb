@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Synapteca | Sydney's Premier AI-Powered Real Estate</title>
+    <meta name="description" content="Learn about Synapteca's mission to revolutionize luxury real estate in Sydney through AI technology and exceptional service.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/listings-style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </a>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="listings.html" class="nav-link">Listings</a></li>
+                        <li><a href="about.html" class="nav-link active">About</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> AI Concierge
+                    </button>
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>About Synapteca</h1>
+                <p>Pioneering the future of luxury real estate through artificial intelligence and unparalleled expertise</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-content">
+                    <div class="story-section">
+                        <h2>Our Story</h2>
+                        <p>Founded with a vision to revolutionize Sydney's luxury real estate market, Synapteca combines cutting-edge artificial intelligence with decades of property expertise. We believe that finding the perfect home should be an exceptional experience, not a stressful process.</p>
+                        
+                        <p>Our team of seasoned professionals has deep roots in Sydney's most prestigious neighborhoods, from the waterfront mansions of Point Piper to the architectural marvels of Vaucluse. We understand that luxury real estate is about more than square footage and price points—it's about lifestyle, legacy, and finding a place to call home.</p>
+                        
+                        <p>What sets us apart is our innovative integration of AI technology that learns your preferences, anticipates your needs, and provides personalized recommendations 24/7. Our AI concierge doesn't replace human expertise—it enhances it, ensuring you receive the most comprehensive and efficient service possible.</p>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="stats-widget">
+                        <h3>Our Impact</h3>
+                        <div class="stat-item">
+                            <div class="stat-number">$2.8B</div>
+                            <div class="stat-label">Total Sales Volume</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">450+</div>
+                            <div class="stat-label">Properties Sold</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">AI Assistance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="section" style="background: var(--off-white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Mission & Values</h2>
+                <p>Guided by principles of excellence, innovation, and integrity</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Excellence</h3>
+                    <p>We set the highest standards in luxury real estate, delivering exceptional results that exceed expectations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>Pioneering AI technology to enhance every aspect of the property search and transaction experience.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Integrity</h3>
+                    <p>Building trust through transparency, honesty, and ethical practices in every client relationship.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Service</h3>
+                    <p>Providing personalized, white-glove service that makes luxury real estate accessible and enjoyable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>Award-winning professionals dedicated to your success</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Mitchell</h3>
+                        <p class="member-title">Founding Director</p>
+                        <p class="member-bio">With over 15 years in Sydney's luxury market, Sarah specializes in waterfront properties and has facilitated over $500M in premium sales.</p>
+                        <div class="member-contact">
+                            <a href="mailto:sarah.mitchell@synapteca.com.au"><i class="fas fa-envelope"></i></a>
+                            <a href="tel:+61295550123"><i class="fas fa-phone"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <p class="member-title">AI Technology Director</p>
+                        <p class="member-bio">Former tech executive who brings cutting-edge AI solutions to real estate, creating our innovative concierge platform.</p>
+                        <div class="member-contact">
+                            <a href="mailto:michael.chen@synapteca.com.au"><i class="fas fa-envelope"></i></a>
+                            <a href="tel:+61295550145"><i class="fas fa-phone"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Elizabeth Hartwell</h3>
+                        <p class="member-title">Senior Sales Director</p>
+                        <p class="member-bio">Elizabeth's expertise in luxury penthouses and investment properties has made her one of Sydney's top-performing agents.</p>
+                        <div class="member-contact">
+                            <a href="mailto:elizabeth.hartwell@synapteca.com.au"><i class="fas fa-envelope"></i></a>
+                            <a href="tel:+61295550167"><i class="fas fa-phone"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Recognition -->
+    <section class="section" style="background: var(--charcoal); color: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: var(--white);">Awards & Recognition</h2>
+                <p style="color: rgba(255,255,255,0.8);">Industry recognition for excellence and innovation</p>
+            </div>
+            
+            <div class="awards-grid">
+                <div class="award-item">
+                    <i class="fas fa-trophy"></i>
+                    <h4>REB Awards 2023</h4>
+                    <p>Innovation in Real Estate Technology</p>
+                </div>
+                
+                <div class="award-item">
+                    <i class="fas fa-medal"></i>
+                    <h4>REINSW 2023</h4>
+                    <p>Excellence in Luxury Sales</p>
+                </div>
+                
+                <div class="award-item">
+                    <i class="fas fa-star"></i>
+                    <h4>PropTech Awards 2023</h4>
+                    <p>Best AI Integration</p>
+                </div>
+                
+                <div class="award-item">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Sydney Morning Herald</h4>
+                    <p>Top Real Estate Agency 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Ready to Experience the Future of Real Estate?</h2>
+                    <p>Join hundreds of satisfied clients who have discovered their dream properties with Synapteca</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="listings.html" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Browse Properties
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Contact Our Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </div>
+                    <p>Sydney's premier luxury real estate firm, powered by cutting-edge AI technology and unparalleled market expertise.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#buyer-representation">Buyer Representation</a></li>
+                        <li><a href="services.html#seller-marketing">Seller Marketing</a></li>
+                        <li><a href="services.html#relocation">Relocation Services</a></li>
+                        <li><a href="services.html#investment">Investment Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Areas</h4>
+                    <ul>
+                        <li><a href="listings.html?area=double-bay">Double Bay</a></li>
+                        <li><a href="listings.html?area=mosman">Mosman</a></li>
+                        <li><a href="listings.html?area=vaucluse">Vaucluse</a></li>
+                        <li><a href="listings.html?area=rose-bay">Rose Bay</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> synapteca@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +61 2 9555 0123</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Level 42, Aurora Place<br>88 Phillip Street, Sydney NSW 2000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Synapteca. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#disclaimer">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="chat-agent-info">
+                <div class="agent-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="agent-details">
+                    <h4>Synapteca AI</h4>
+                    <span class="status online">Online</span>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChatWidget()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! I'd be happy to tell you more about Synapteca and help you with any questions about our services.
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="voice-controls" id="voiceControls">
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <div class="voice-status" id="voiceStatus">
+                    <span class="listening-indicator"></span>
+                    <span class="status-text">Click to speak</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Ask about our company..." autocomplete="off">
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChatWidget()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/voice-agent.js"></script>
+    <script src="js/main.js"></script>
+
+    <style>
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .value-card i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .member-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .member-title {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .member-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .member-contact a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        
+        .member-contact a:hover {
+            background: var(--charcoal);
+        }
+        
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .award-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .award-item i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .stats-widget .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--off-white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: var(--font-serif);
+        }
+        
+        .stat-label {
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+    </style>
+</body>
+</html>

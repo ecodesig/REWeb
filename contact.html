@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Synapteca Luxury Real Estate</title>
+    <meta name="description" content="Get in touch with Synapteca's luxury real estate experts in Sydney. Contact us for exclusive property inquiries and premium concierge services.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Leaflet for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/listings-style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="listings.html" class="nav-link">Listings</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> AI Concierge
+                    </button>
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero-section contact-hero">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Get in Touch</h1>
+                    <p class="hero-subtitle">Connect with Sydney's Premier Luxury Real Estate Experts</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2 class="section-title">Contact Information</h2>
+                        <div class="contact-cards">
+                            <div class="contact-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Sydney Office</h3>
+                                    <p>Level 42, Governor Phillip Tower<br>
+                                    1 Farrer Place, Sydney NSW 2000<br>
+                                    Australia</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Phone</h3>
+                                    <p><a href="tel:+61-2-9000-5555">+61 2 9000 5555</a><br>
+                                    <a href="tel:1800-SYNAPTECA">1800 SYNAPTECA</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <p><a href="mailto:synapteca@gmail.com">synapteca@gmail.com</a><br>
+                                    <a href="mailto:luxury@synapteca.com.au">luxury@synapteca.com.au</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Business Hours</h3>
+                                    <p>Monday - Friday: 8:00 AM - 8:00 PM<br>
+                                    Saturday: 9:00 AM - 6:00 PM<br>
+                                    Sunday: 10:00 AM - 4:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emergency Contact -->
+                        <div class="emergency-contact">
+                            <h3><i class="fas fa-exclamation-triangle"></i> After Hours Emergency</h3>
+                            <p>For urgent property matters outside business hours:</p>
+                            <p><strong><a href="tel:+61-400-LUXURY">+61 400 LUXURY</a></strong></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <h2 class="section-title">Send us a Message</h2>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inquiryType">Type of Inquiry</label>
+                                <select id="inquiryType" name="inquiryType">
+                                    <option value="general">General Inquiry</option>
+                                    <option value="buying">Buying Property</option>
+                                    <option value="selling">Selling Property</option>
+                                    <option value="investment">Investment Opportunities</option>
+                                    <option value="valuation">Property Valuation</option>
+                                    <option value="consultation">Private Consultation</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="priceRange">Budget Range (Optional)</label>
+                                <select id="priceRange" name="priceRange">
+                                    <option value="">Select price range</option>
+                                    <option value="5-10M">$5M - $10M</option>
+                                    <option value="10-20M">$10M - $20M</option>
+                                    <option value="20-35M">$20M - $35M</option>
+                                    <option value="35M+">$35M+</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="neighborhoods">Preferred Neighborhoods</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="neighborhoods" value="point-piper">
+                                        <span class="checkmark"></span>
+                                        Point Piper
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="neighborhoods" value="double-bay">
+                                        <span class="checkmark"></span>
+                                        Double Bay
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="neighborhoods" value="mosman">
+                                        <span class="checkmark"></span>
+                                        Mosman
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="neighborhoods" value="vaucluse">
+                                        <span class="checkmark"></span>
+                                        Vaucluse
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="neighborhoods" value="rose-bay">
+                                        <span class="checkmark"></span>
+                                        Rose Bay
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your luxury property needs..."></textarea>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="newsletter" value="yes">
+                                    <span class="checkmark"></span>
+                                    Subscribe to our exclusive luxury market insights and new listings
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2 class="section-title">Find Our Sydney Office</h2>
+                <div class="map-container">
+                    <div id="contactMap" class="contact-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Explore Luxury Real Estate?</h2>
+                    <p>Let our AI-powered concierge help you find your perfect Sydney property</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="openAIChat()">
+                            <i class="fas fa-robot"></i>
+                            Start AI Chat
+                        </button>
+                        <a href="listings.html" class="btn btn-outline">
+                            <i class="fas fa-search"></i>
+                            Browse Listings
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </div>
+                    <p>Sydney's premier AI-powered luxury real estate platform, connecting discerning clients with exceptional properties.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="listings.html">Luxury Listings</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#buying">Property Acquisition</a></li>
+                        <li><a href="services.html#selling">Property Sales</a></li>
+                        <li><a href="services.html#investment">Investment Advisory</a></li>
+                        <li><a href="services.html#valuation">Property Valuation</a></li>
+                        <li><a href="services.html#concierge">Concierge Services</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Level 42, Governor Phillip Tower, Sydney</p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+61-2-9000-5555">+61 2 9000 5555</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:synapteca@gmail.com">synapteca@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Synapteca. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget" id="aiChatWidget">
+        <div class="chat-header">
+            <h3><i class="fas fa-robot"></i> AI Concierge</h3>
+            <button class="chat-close" onclick="closeAIChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hello! I'm your AI real estate concierge. I can help you with property inquiries, schedule viewings, or provide market insights. How can I assist you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="quick-prompts">
+                <button class="quick-prompt" onclick="sendQuickMessage('I want to schedule a property viewing')">Schedule Viewing</button>
+                <button class="quick-prompt" onclick="sendQuickMessage('Tell me about luxury properties in Point Piper')">Point Piper Properties</button>
+                <button class="quick-prompt" onclick="sendQuickMessage('What are the current market trends?')">Market Trends</button>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="voiceButton" class="voice-button" onclick="toggleVoiceInput()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button onclick="sendMessage()" class="send-button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/voice-agent.js"></script>
+    
+    <script>
+        // Initialize contact form and map
+        document.addEventListener('DOMContentLoaded', function() {
+            initContactForm();
+            initContactMap();
+        });
+
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    
+                    // Get checked neighborhoods
+                    const neighborhoods = Array.from(document.querySelectorAll('input[name="neighborhoods"]:checked'))
+                        .map(checkbox => checkbox.value);
+                    data.neighborhoods = neighborhoods;
+                    
+                    // Simulate form submission
+                    showFormSubmission();
+                    
+                    console.log('Contact form submitted:', data);
+                });
+            }
+        }
+
+        function showFormSubmission() {
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('success');
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('success');
+                document.getElementById('contactForm').reset();
+            }, 3000);
+        }
+
+        function initContactMap() {
+            // Sydney Office Location
+            const sydneyOffice = [-33.8634, 151.2136]; // Governor Phillip Tower coordinates
+            
+            const map = L.map('contactMap').setView(sydneyOffice, 16);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Custom marker for office
+            const officeMarker = L.marker(sydneyOffice).addTo(map);
+            officeMarker.bindPopup(`
+                <div class="map-popup">
+                    <h3>Synapteca Sydney Office</h3>
+                    <p>Level 42, Governor Phillip Tower<br>
+                    1 Farrer Place, Sydney NSW 2000</p>
+                    <p><strong>Phone:</strong> +61 2 9000 5555</p>
+                </div>
+            `).openPopup();
+        }
+    </script>
+</body>
+</html>

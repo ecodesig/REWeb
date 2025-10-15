@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synapteca | Luxury Real Estate Sydney</title>
+    <meta name="description" content="Discover exceptional luxury properties in Sydney with Synapteca's premium real estate services and AI-powered concierge.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Leaflet for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="listings.html" class="nav-link">Listings</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> AI Concierge
+                    </button>
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline webkit-playsinline>
+                <source src="https://page.gensparksite.com/get_upload_url/856a95080629a918f9354de1e3297b46d1809a5c60b4c2a9c124c73fdc9891cb/default/6dfe8c3e-622f-47b8-8ddd-154ac3b53540" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Discover Exceptional Living</h1>
+                    <p class="hero-subtitle">Experience Sydney's most prestigious properties with our AI-powered concierge service</p>
+                    
+                    <div class="hero-actions">
+                        <a href="listings.html" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Explore Listings
+                        </a>
+                        <button class="btn btn-secondary" onclick="openAIChat()">
+                            <i class="fas fa-comments"></i> Talk to Our AI Concierge
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- AI Assistant Section -->
+                <div class="ai-assistant-section">
+                    <div class="ai-cards">
+                        <div class="ai-card chat-card">
+                            <div class="ai-card-header">
+                                <i class="fas fa-comments"></i>
+                                <h3>AI Chat Concierge</h3>
+                            </div>
+                            <p>Get instant answers about properties, neighborhoods, and market insights</p>
+                            <button class="btn btn-glass" onclick="openAIChat()">
+                                <i class="fas fa-robot"></i> Start Chat
+                            </button>
+                        </div>
+                        
+                        <div class="ai-card voice-card">
+                            <div class="ai-card-header">
+                                <i class="fas fa-microphone"></i>
+                                <h3>AI Voice Agent</h3>
+                            </div>
+                            <p>Speak naturally to find your perfect luxury property</p>
+                            <button class="btn btn-glass" onclick="toggleVoiceAgent()">
+                                <i class="fas fa-microphone-alt"></i> Start Voice Chat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings -->
+    <section class="featured-listings">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Properties</h2>
+                <p class="section-subtitle">Discover our handpicked selection of Sydney's finest luxury properties</p>
+            </div>
+            
+            <div class="listings-carousel" id="featuredListings">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+            
+            <div class="section-footer">
+                <a href="listings.html" class="btn btn-outline">
+                    View All Properties <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neighborhoods Section -->
+    <section class="neighborhoods">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Prestigious Neighborhoods</h2>
+                <p class="section-subtitle">Explore Sydney's most coveted addresses</p>
+            </div>
+            
+            <div class="neighborhoods-grid">
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">
+                        <img src="https://www.amazingarchitecture.com/photos/5/SAOTA/Double%20Bay/DOUBLE%20BAY_SYDNEY_AUSTRALIA_Saota_001.jpg" alt="Double Bay">
+                        <div class="neighborhood-overlay"></div>
+                    </div>
+                    <div class="neighborhood-content">
+                        <h3>Double Bay</h3>
+                        <p>Harborside elegance with designer boutiques and waterfront dining</p>
+                        <span class="property-count">12 Properties</span>
+                    </div>
+                </div>
+                
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">
+                        <img src="https://www.e-architect.com/wp-content/uploads/2018/09/mosman-house-in-sydney-nsw-s110918-j16.jpg" alt="Mosman">
+                        <div class="neighborhood-overlay"></div>
+                    </div>
+                    <div class="neighborhood-content">
+                        <h3>Mosman</h3>
+                        <p>Family-friendly harbor suburb with pristine beaches and parks</p>
+                        <span class="property-count">8 Properties</span>
+                    </div>
+                </div>
+                
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">
+                        <img src="https://onekindesign.com/wp-content/uploads/2012/10/Vaucluse-House-01-1-Kind-Design.jpg" alt="Vaucluse">
+                        <div class="neighborhood-overlay"></div>
+                    </div>
+                    <div class="neighborhood-content">
+                        <h3>Vaucluse</h3>
+                        <p>Exclusive clifftop mansions with panoramic harbor views</p>
+                        <span class="property-count">6 Properties</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Testimonials</h2>
+                <p class="section-subtitle">What our clients say about the Synapteca experience</p>
+            </div>
+            
+            <div class="testimonials-slider" id="testimonialsSlider">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "Synapteca's AI concierge revolutionized our property search. Within days, we found our dream harbourside mansion in Double Bay."
+                    </blockquote>
+                    <footer>
+                        <strong>Sarah & James Mitchell</strong>
+                        <span>Double Bay Residents</span>
+                    </footer>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "The level of service and attention to detail exceeded every expectation. Their market knowledge is unparalleled."
+                    </blockquote>
+                    <footer>
+                        <strong>Dr. Michael Chen</strong>
+                        <span>Mosman Homeowner</span>
+                    </footer>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "From initial consultation to settlement, Synapteca provided a seamless, luxury experience. Highly recommended."
+                    </blockquote>
+                    <footer>
+                        <strong>Elizabeth Hartwell</strong>
+                        <span>Vaucluse Investor</span>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Ready to Find Your Dream Property?</h2>
+                    <p>Get pre-qualified and book a private tour with our luxury property specialists</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="contact.html?type=prequalify" class="btn btn-primary">
+                        <i class="fas fa-certificate"></i> Get Prequalified
+                    </a>
+                    <a href="contact.html?type=tour" class="btn btn-outline">
+                        <i class="fas fa-calendar"></i> Book a Private Tour
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </div>
+                    <p>Sydney's premier luxury real estate firm, powered by cutting-edge AI technology and unparalleled market expertise.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#buyer-representation">Buyer Representation</a></li>
+                        <li><a href="services.html#seller-marketing">Seller Marketing</a></li>
+                        <li><a href="services.html#relocation">Relocation Services</a></li>
+                        <li><a href="services.html#investment">Investment Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Areas</h4>
+                    <ul>
+                        <li><a href="listings.html?area=double-bay">Double Bay</a></li>
+                        <li><a href="listings.html?area=mosman">Mosman</a></li>
+                        <li><a href="listings.html?area=vaucluse">Vaucluse</a></li>
+                        <li><a href="listings.html?area=rose-bay">Rose Bay</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> synapteca@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +61 2 9555 0123</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Level 42, Aurora Place<br>88 Phillip Street, Sydney NSW 2000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Synapteca. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#disclaimer">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="chat-agent-info">
+                <div class="agent-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="agent-details">
+                    <h4>Synapteca AI</h4>
+                    <span class="status online">Online</span>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChatWidget()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Welcome to Synapteca! I'm your AI property concierge. How can I assist you today?
+                </div>
+            </div>
+            <div class="quick-prompts">
+                <button class="prompt-btn" onclick="sendQuickPrompt('Find waterfront homes under $10M')">
+                    Find waterfront homes under $10M
+                </button>
+                <button class="prompt-btn" onclick="sendQuickPrompt('Schedule a property tour')">
+                    Schedule a property tour
+                </button>
+                <button class="prompt-btn" onclick="sendQuickPrompt('Tell me about Double Bay')">
+                    Tell me about Double Bay
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="voice-controls" id="voiceControls">
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <div class="voice-status" id="voiceStatus">
+                    <span class="listening-indicator"></span>
+                    <span class="status-text">Click to speak</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message or use voice..." autocomplete="off">
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChatWidget()">
+        <i class="fas fa-comments"></i>
+        <span class="notification-badge" id="chatBadge">1</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/voice-agent.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

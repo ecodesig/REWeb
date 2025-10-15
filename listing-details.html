@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Luxury Property Details | Synapteca Real Estate Sydney</title>
+    <meta name="description" id="pageDescription" content="Discover detailed information about this luxury property in Sydney with virtual tours, floor plans, and neighborhood insights.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" id="ogTitle" content="Luxury Property Details | Synapteca">
+    <meta property="og:description" id="ogDescription" content="Luxury property details and virtual tour">
+    <meta property="og:image" id="ogImage" content="">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Leaflet for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/listings-style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </a>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="listings.html" class="nav-link">Listings</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> AI Concierge
+                    </button>
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Loading property details...</p>
+        </div>
+    </div>
+
+    <!-- Property Details -->
+    <main class="property-details-main" id="propertyMain" style="display: none;">
+        <!-- Property Header -->
+        <section class="property-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="listings.html">Listings</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="breadcrumbTitle">Property Details</span>
+                </div>
+                
+                <div class="property-header-content">
+                    <div class="property-info">
+                        <h1 id="propertyTitle" class="property-title"></h1>
+                        <p id="propertyAddress" class="property-address"></p>
+                        <div class="property-badges" id="propertyBadges"></div>
+                    </div>
+                    
+                    <div class="property-actions">
+                        <div id="propertyPrice" class="property-price"></div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="scheduleViewing()">
+                                <i class="fas fa-calendar"></i> Schedule Tour
+                            </button>
+                            <button class="btn btn-outline" onclick="requestInfo()">
+                                <i class="fas fa-info-circle"></i> Request Info
+                            </button>
+                            <button class="btn btn-glass favorite-btn" id="headerFavoriteBtn">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn btn-glass" onclick="shareProperty()">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery -->
+        <section class="property-gallery">
+            <div class="container">
+                <div class="gallery-container">
+                    <div class="main-image">
+                        <img id="mainImage" src="" alt="Property Image">
+                        <button class="gallery-nav prev" onclick="previousImage()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gallery-nav next" onclick="nextImage()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="fullscreen-btn" onclick="openLightbox()">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <div class="image-counter">
+                            <span id="imageCounter">1 / 3</span>
+                        </div>
+                    </div>
+                    
+                    <div class="thumbnail-grid" id="thumbnailGrid">
+                        <!-- Thumbnails will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="gallery-actions">
+                        <button class="btn btn-outline" onclick="open3DTour()">
+                            <i class="fas fa-cube"></i> 3D Virtual Tour
+                        </button>
+                        <button class="btn btn-outline" onclick="openFloorPlans()">
+                            <i class="fas fa-layer-group"></i> Floor Plans
+                        </button>
+                        <button class="btn btn-outline" onclick="openVideoTour()">
+                            <i class="fas fa-play"></i> Video Tour
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Content -->
+        <section class="property-content">
+            <div class="container">
+                <div class="content-grid">
+                    <!-- Main Content -->
+                    <div class="main-content">
+                        <!-- Quick Facts -->
+                        <div class="property-facts">
+                            <h3>Property Overview</h3>
+                            <div class="facts-grid" id="factsGrid">
+                                <!-- Facts will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="property-description">
+                            <h3>Description</h3>
+                            <div id="propertyDescription" class="description-content">
+                                <!-- Description will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Features & Amenities -->
+                        <div class="property-features">
+                            <h3>Features & Amenities</h3>
+                            <div id="propertyFeatures" class="features-grid">
+                                <!-- Features will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Neighborhood Info -->
+                        <div class="neighborhood-info">
+                            <h3>About the Neighborhood</h3>
+                            <div class="neighborhood-content">
+                                <div id="neighborhoodDescription"></div>
+                                <div class="neighborhood-highlights" id="neighborhoodHighlights">
+                                    <!-- Highlights will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location Map -->
+                        <div class="location-section">
+                            <h3>Location & Transportation</h3>
+                            <div class="location-map" id="locationMap">
+                                <!-- Map will be initialized by JavaScript -->
+                            </div>
+                            <div class="location-details">
+                                <div class="nearby-places">
+                                    <h4>Nearby Attractions</h4>
+                                    <ul id="nearbyPlaces">
+                                        <!-- Nearby places will be populated -->
+                                    </ul>
+                                </div>
+                                <div class="transportation">
+                                    <h4>Transportation</h4>
+                                    <ul id="transportationOptions">
+                                        <!-- Transportation will be populated -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- School Ratings -->
+                        <div class="school-ratings">
+                            <h3>School Ratings</h3>
+                            <div class="schools-grid" id="schoolsGrid">
+                                <!-- School ratings will be populated -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="sidebar">
+                        <!-- Mortgage Calculator -->
+                        <div class="calculator-widget">
+                            <h3>Mortgage Calculator</h3>
+                            <div class="calculator-form">
+                                <div class="form-group">
+                                    <label>Property Price</label>
+                                    <input type="text" id="calcPrice" class="form-input" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Down Payment (%)</label>
+                                    <div class="input-with-slider">
+                                        <input type="range" id="downPaymentSlider" min="10" max="50" value="20" class="range-input">
+                                        <input type="number" id="downPayment" class="form-input" value="20" min="10" max="50">
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Interest Rate (%)</label>
+                                    <input type="number" id="interestRate" class="form-input" value="6.5" min="0" max="15" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Loan Term (Years)</label>
+                                    <select id="loanTerm" class="form-select">
+                                        <option value="15">15 years</option>
+                                        <option value="20">20 years</option>
+                                        <option value="25">25 years</option>
+                                        <option value="30" selected>30 years</option>
+                                    </select>
+                                </div>
+                                
+                                <button class="btn btn-primary btn-full" onclick="calculateMortgage()">
+                                    Calculate Payment
+                                </button>
+                                
+                                <div class="calculator-results" id="calculatorResults" style="display: none;">
+                                    <div class="result-item">
+                                        <span>Monthly Payment:</span>
+                                        <strong id="monthlyPayment">$0</strong>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Principal & Interest:</span>
+                                        <span id="principalInterest">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Property Tax:</span>
+                                        <span id="propertyTax">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>Insurance:</span>
+                                        <span id="insurance">$0</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span>HOA Fees:</span>
+                                        <span id="hoaFees">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Agent Contact -->
+                        <div class="agent-contact" id="agentContact">
+                            <h3>Contact Agent</h3>
+                            <!-- Agent details will be populated -->
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <h3>Quick Actions</h3>
+                            <div class="action-list">
+                                <button class="action-item" onclick="scheduleViewing()">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Schedule Viewing</span>
+                                </button>
+                                <button class="action-item" onclick="requestBrochure()">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Download Brochure</span>
+                                </button>
+                                <button class="action-item" onclick="compareProperties()">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <span>Compare Properties</span>
+                                </button>
+                                <button class="action-item" onclick="askAIQuestions()">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Ask AI Questions</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Similar Properties -->
+                        <div class="similar-properties">
+                            <h3>Similar Properties</h3>
+                            <div id="similarPropertiesList">
+                                <!-- Similar properties will be populated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Properties -->
+        <section class="related-properties">
+            <div class="container">
+                <div class="section-header">
+                    <h2>More Properties in <span id="neighborhoodName"></span></h2>
+                    <a href="listings.html" class="btn btn-outline">View All Properties</a>
+                </div>
+                
+                <div class="properties-carousel" id="relatedPropertiesCarousel">
+                    <!-- Related properties will be populated -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Property Not Found -->
+    <div class="property-not-found" id="propertyNotFound" style="display: none;">
+        <div class="container">
+            <div class="not-found-content">
+                <i class="fas fa-home"></i>
+                <h1>Property Not Found</h1>
+                <p>Sorry, we couldn't find the property you're looking for. It may have been sold or removed from our listings.</p>
+                <div class="not-found-actions">
+                    <a href="listings.html" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Browse All Properties
+                    </a>
+                    <button class="btn btn-outline" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> Ask Our AI Concierge
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-container">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav prev" onclick="previousLightboxImage()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav next" onclick="nextLightboxImage()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="Property Image">
+            <div class="lightbox-counter">
+                <span id="lightboxCounter">1 / 3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </div>
+                    <p>Sydney's premier luxury real estate firm, powered by cutting-edge AI technology and unparalleled market expertise.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#buyer-representation">Buyer Representation</a></li>
+                        <li><a href="services.html#seller-marketing">Seller Marketing</a></li>
+                        <li><a href="services.html#relocation">Relocation Services</a></li>
+                        <li><a href="services.html#investment">Investment Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Areas</h4>
+                    <ul>
+                        <li><a href="listings.html?area=double-bay">Double Bay</a></li>
+                        <li><a href="listings.html?area=mosman">Mosman</a></li>
+                        <li><a href="listings.html?area=vaucluse">Vaucluse</a></li>
+                        <li><a href="listings.html?area=rose-bay">Rose Bay</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> synapteca@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +61 2 9555 0123</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Level 42, Aurora Place<br>88 Phillip Street, Sydney NSW 2000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Synapteca. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#disclaimer">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="chat-agent-info">
+                <div class="agent-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="agent-details">
+                    <h4>Synapteca AI</h4>
+                    <span class="status online">Online</span>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChatWidget()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    I can answer questions about this property, schedule tours, or help you compare similar listings. What would you like to know?
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="voice-controls" id="voiceControls">
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <div class="voice-status" id="voiceStatus">
+                    <span class="listening-indicator"></span>
+                    <span class="status-text">Click to speak</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Ask about this property..." autocomplete="off">
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChatWidget()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/voice-agent.js"></script>
+    <script src="js/listing-details.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" id="propertyStructuredData">
+    {
+        "@context": "https://schema.org",
+        "@type": "RealEstateListing",
+        "name": "",
+        "description": "",
+        "url": "",
+        "image": "",
+        "address": {
+            "@type": "PostalAddress"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "",
+            "priceCurrency": "AUD"
+        }
+    }
+    </script>
+</body>
+</html>

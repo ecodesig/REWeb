@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Property Listings | Synapteca Real Estate Sydney</title>
+    <meta name="description" content="Discover Sydney's finest luxury properties. Advanced search filters, map view, and AI-powered recommendations.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Leaflet for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/listings-style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </a>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="listings.html" class="nav-link active">Listings</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> AI Concierge
+                    </button>
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Luxury Property Listings</h1>
+                <p>Discover Sydney's most prestigious addresses with our advanced search and AI-powered recommendations</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Listings</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="search-section">
+        <div class="container">
+            <!-- Quick Search Bar -->
+            <div class="quick-search">
+                <div class="search-input-container">
+                    <input type="text" id="quickSearch" placeholder="Search by address, neighborhood, or features...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="view-toggles">
+                    <button class="view-toggle active" data-view="grid">
+                        <i class="fas fa-th-large"></i> Grid
+                    </button>
+                    <button class="view-toggle" data-view="list">
+                        <i class="fas fa-list"></i> List
+                    </button>
+                    <button class="view-toggle" data-view="map">
+                        <i class="fas fa-map"></i> Map
+                    </button>
+                </div>
+            </div>
+
+            <!-- Advanced Filters -->
+            <div class="filters-panel" id="filtersPanel">
+                <div class="filters-header">
+                    <h3>Search Filters</h3>
+                    <button class="filters-toggle" id="filtersToggle">
+                        <i class="fas fa-sliders-h"></i> Advanced Filters
+                    </button>
+                </div>
+                
+                <div class="filters-content" id="filtersContent">
+                    <div class="filters-grid">
+                        <!-- Price Range -->
+                        <div class="filter-group">
+                            <label class="filter-label">Price Range</label>
+                            <div class="price-range">
+                                <input type="range" id="minPrice" class="range-input" min="0" max="50000000" value="0" step="1000000">
+                                <input type="range" id="maxPrice" class="range-input" min="0" max="50000000" value="50000000" step="1000000">
+                                <div class="range-values">
+                                    <span id="minPriceValue">$0</span>
+                                    <span id="maxPriceValue">$50M+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Property Type -->
+                        <div class="filter-group">
+                            <label class="filter-label">Property Type</label>
+                            <select id="propertyType" class="form-select">
+                                <option value="all">All Types</option>
+                                <option value="house">House</option>
+                                <option value="penthouse">Penthouse</option>
+                                <option value="townhouse">Townhouse</option>
+                                <option value="apartment">Apartment</option>
+                            </select>
+                        </div>
+
+                        <!-- Bedrooms -->
+                        <div class="filter-group">
+                            <label class="filter-label">Bedrooms</label>
+                            <div class="filter-buttons">
+                                <button class="filter-btn" data-bedrooms="any">Any</button>
+                                <button class="filter-btn" data-bedrooms="1">1+</button>
+                                <button class="filter-btn" data-bedrooms="2">2+</button>
+                                <button class="filter-btn" data-bedrooms="3">3+</button>
+                                <button class="filter-btn" data-bedrooms="4">4+</button>
+                                <button class="filter-btn" data-bedrooms="5">5+</button>
+                            </div>
+                        </div>
+
+                        <!-- Bathrooms -->
+                        <div class="filter-group">
+                            <label class="filter-label">Bathrooms</label>
+                            <div class="filter-buttons">
+                                <button class="filter-btn" data-bathrooms="any">Any</button>
+                                <button class="filter-btn" data-bathrooms="1">1+</button>
+                                <button class="filter-btn" data-bathrooms="2">2+</button>
+                                <button class="filter-btn" data-bathrooms="3">3+</button>
+                                <button class="filter-btn" data-bathrooms="4">4+</button>
+                                <button class="filter-btn" data-bathrooms="5">5+</button>
+                            </div>
+                        </div>
+
+                        <!-- Neighborhood -->
+                        <div class="filter-group">
+                            <label class="filter-label">Neighborhood</label>
+                            <select id="neighborhood" class="form-select">
+                                <option value="all">All Areas</option>
+                                <option value="point-piper">Point Piper</option>
+                                <option value="double-bay">Double Bay</option>
+                                <option value="mosman">Mosman</option>
+                                <option value="vaucluse">Vaucluse</option>
+                                <option value="rose-bay">Rose Bay</option>
+                                <option value="bellevue-hill">Bellevue Hill</option>
+                                <option value="elizabeth-bay">Elizabeth Bay</option>
+                            </select>
+                        </div>
+
+                        <!-- Square Footage -->
+                        <div class="filter-group">
+                            <label class="filter-label">Square Footage</label>
+                            <div class="range-slider">
+                                <input type="range" id="sqftRange" class="range-input" min="1000" max="20000" value="1000" step="500">
+                                <div class="range-values">
+                                    <span>1,000 sqft</span>
+                                    <span id="sqftValue">1,000+ sqft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div class="filter-group amenities-filter">
+                        <label class="filter-label">Amenities & Features</label>
+                        <div class="amenities-grid">
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Harbour Views">
+                                <span>Harbour Views</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Ocean Views">
+                                <span>Ocean Views</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Pool">
+                                <span>Swimming Pool</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Tennis Court">
+                                <span>Tennis Court</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Wine Cellar">
+                                <span>Wine Cellar</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Gym">
+                                <span>Gym/Fitness</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Home Theatre">
+                                <span>Home Theatre</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Private Jetty">
+                                <span>Private Jetty</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Security">
+                                <span>24/7 Security</span>
+                            </label>
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" value="Smart Home">
+                                <span>Smart Home</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filters-actions">
+                        <button class="btn btn-outline" id="clearFilters">
+                            <i class="fas fa-times"></i> Clear All
+                        </button>
+                        <button class="btn btn-primary" id="applyFilters">
+                            <i class="fas fa-search"></i> Apply Filters
+                        </button>
+                        <button class="btn btn-secondary" onclick="openAISearchAssistant()">
+                            <i class="fas fa-robot"></i> AI Search Assistant
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <div class="results-info">
+                    <span id="resultsCount">8 Properties Found</span>
+                    <span class="results-location" id="resultsLocation">Sydney Luxury Market</span>
+                </div>
+                <div class="sort-controls">
+                    <label for="sortBy">Sort by:</label>
+                    <select id="sortBy" class="form-select">
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="newest">Newest First</option>
+                        <option value="bedrooms-desc">Most Bedrooms</option>
+                        <option value="sqft-desc">Largest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Map View -->
+            <div class="map-container" id="mapContainer" style="display: none;">
+                <div id="propertyMap" class="property-map"></div>
+                <div class="map-controls">
+                    <button class="map-control-btn" onclick="fitMapToBounds()">
+                        <i class="fas fa-expand-arrows-alt"></i> Fit All
+                    </button>
+                    <button class="map-control-btn" onclick="toggleSatelliteView()">
+                        <i class="fas fa-satellite"></i> Satellite
+                    </button>
+                </div>
+            </div>
+
+            <!-- Listings Grid/List -->
+            <div class="listings-container" id="listingsContainer">
+                <div class="listings-grid" id="listingsGrid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container" id="paginationContainer">
+                <div class="pagination">
+                    <button class="pagination-btn" id="prevPage" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <div class="pagination-numbers" id="paginationNumbers">
+                        <!-- Dynamic page numbers -->
+                    </div>
+                    <button class="pagination-btn" id="nextPage">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="pagination-info">
+                    <span id="paginationInfo">Showing 1-8 of 8 properties</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Can't Find What You're Looking For?</h2>
+                    <p>Our AI-powered search and luxury property specialists can help you discover exclusive off-market opportunities</p>
+                </div>
+                <div class="cta-actions">
+                    <button class="btn btn-primary" onclick="openAIChat()">
+                        <i class="fas fa-robot"></i> Ask Our AI Concierge
+                    </button>
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Speak to a Specialist
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/synapteca-logo.svg" alt="Synapteca" class="logo-img">
+                    </div>
+                    <p>Sydney's premier luxury real estate firm, powered by cutting-edge AI technology and unparalleled market expertise.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#buyer-representation">Buyer Representation</a></li>
+                        <li><a href="services.html#seller-marketing">Seller Marketing</a></li>
+                        <li><a href="services.html#relocation">Relocation Services</a></li>
+                        <li><a href="services.html#investment">Investment Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Areas</h4>
+                    <ul>
+                        <li><a href="listings.html?area=double-bay">Double Bay</a></li>
+                        <li><a href="listings.html?area=mosman">Mosman</a></li>
+                        <li><a href="listings.html?area=vaucluse">Vaucluse</a></li>
+                        <li><a href="listings.html?area=rose-bay">Rose Bay</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> synapteca@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +61 2 9555 0123</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Level 42, Aurora Place<br>88 Phillip Street, Sydney NSW 2000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Synapteca. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#disclaimer">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="chat-agent-info">
+                <div class="agent-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="agent-details">
+                    <h4>Synapteca AI</h4>
+                    <span class="status online">Online</span>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChatWidget()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    I can help you find the perfect luxury property! Try asking about specific neighborhoods, price ranges, or features you're looking for.
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="voice-controls" id="voiceControls">
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <div class="voice-status" id="voiceStatus">
+                    <span class="listening-indicator"></span>
+                    <span class="status-text">Click to speak</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message or use voice..." autocomplete="off">
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChatWidget()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/voice-agent.js"></script>
+    <script src="js/listings.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
